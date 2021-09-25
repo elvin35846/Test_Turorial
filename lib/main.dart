@@ -26,6 +26,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final List<MenuRowData> menuRowData = [
+    MenuRowData(Icons.account_balance_wallet, 'Favorite', Colors.blue),
+    MenuRowData(Icons.call, 'Call', Colors.green),
+    MenuRowData(Icons.account_balance_wallet, 'Devices', Colors.orange),
+    MenuRowData(Icons.folder, 'Favorite', Colors.lightBlue),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -43,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               _UserInfo(),
               SizedBox(height: 20),
-              _MenuBlock(),
+              _MenuBlock(menuRowData: menuRowData),
             ],
           ),
         ),
@@ -52,8 +59,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+class MenuRowData {
+  final IconData icon;
+  final String text;
+  final Color iconColor;
+
+  MenuRowData(this.icon, this.text, this.iconColor);
+}
+
 class _MenuBlock extends StatelessWidget {
-  const _MenuBlock({Key key}) : super(key: key);
+  final List<MenuRowData> menuRowData;
+  const _MenuBlock({Key key, this.menuRowData}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -62,10 +78,7 @@ class _MenuBlock extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         children: [
-          _MenuWidgetRow(icon: Icons.account_balance_wallet, text: 'Favorite', iconColor: Colors.blue),
-          _MenuWidgetRow(icon: Icons.call, text: 'Call', iconColor: Colors.green),
-          _MenuWidgetRow(icon: Icons.computer, text: 'Devices', iconColor: Colors.orange),
-          _MenuWidgetRow(icon: Icons.folder, text: 'Chat folder', iconColor: Colors.lightBlue),
+          menuRowData.map((e) => _MenuWidgetRow(data: e)).toList(),
         ],
       ),
     );
@@ -73,15 +86,11 @@ class _MenuBlock extends StatelessWidget {
 }
 
 class _MenuWidgetRow extends StatelessWidget {
-  final IconData icon;
-  final String text;
-  final Color iconColor;
+  final MenuRowData data;
 
   const _MenuWidgetRow({
     Key key,
-    this.icon,
-    this.text,
-    this.iconColor,
+    this.data,
   }) : super(key: key);
 
   @override
@@ -99,14 +108,14 @@ class _MenuWidgetRow extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               Icon(
-                icon,
+                data.icon,
                 size: 26,
-                color: iconColor,
+                color: data.iconColor,
               ),
               SizedBox(width: 15),
               Expanded(
                 child: Text(
-                  text,
+                  data.text,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
