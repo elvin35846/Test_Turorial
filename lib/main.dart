@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:core';
 
 void main() => runApp(MyApp());
 
@@ -28,7 +27,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<MenuRowData> menuRowData = [
-    MenuRowData(Icons.account_balance_wallet, 'Favorite', Colors.blue),
+    MenuRowData(Icons.account_balance_wallet, 'Favorites', Colors.blue),
     MenuRowData(Icons.call, 'Call', Colors.green),
     MenuRowData(Icons.account_balance_wallet, 'Devices', Colors.orange),
     MenuRowData(Icons.folder, 'Favorite', Colors.lightBlue),
@@ -78,9 +77,7 @@ class _MenuBlock extends StatelessWidget {
       color: Colors.white,
       padding: EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
-        children: [
-          menuRowData.map((e) => _MenuWidgetRow(data: e)).toList(),
-        ],
+        children: menuRowData.map((e) => _MenuWidgetRow(data: e)).toList(),
       ),
     );
   }
