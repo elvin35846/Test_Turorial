@@ -27,7 +27,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<MenuRowData> menuRowData = [
-    MenuRowData(Icons.account_balance_wallet, 'Favorites', Colors.blue),
+    MenuRowData(Icons.account_balance_wallet, 'Favorite', Colors.blue),
     MenuRowData(Icons.call, 'Call', Colors.green),
     MenuRowData(Icons.account_balance_wallet, 'Devices', Colors.orange),
     MenuRowData(Icons.folder, 'Favorite', Colors.lightBlue),
